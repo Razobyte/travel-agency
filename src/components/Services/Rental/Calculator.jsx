@@ -3,10 +3,10 @@ import { FaCheck } from 'react-icons/fa';
 
 export default function Calculator() {
     const rates = [
-        { period: 8, rate: 800, unit: 'hour', rateunit: "INR" },
-        { period: 10, rate: 2000, unit: 'hour', rateunit: "INR" },
-        { period: 12, rate: 2200, unit: 'hour', rateunit: "INR" },
-        { period: 16, rate: 2400, unit: 'hour', rateunit: "INR" },
+        { period: 10, rate: 1200, unit: 'hour', rateunit: "INR" },
+        { period: 16, rate: 1500, unit: 'hour', rateunit: "INR" },
+        { period: 24, rate: 2400, unit: 'hour', rateunit: "INR" },
+        // { period: 16, rate: 2400, unit: 'hour', rateunit: "INR" },
     ];
     const check = [
         'Free cancellation (48h)',

@@ -44,7 +44,7 @@ export default function About() {
                             your journey as much as you do.
                         </div>
                         <div className='text-md text-[#252525] font-normal pt-1'>
-                            Discover why thousands of travelers trust DTS for their transportation needs.
+                            Discover why 100 of travelers trust DTS for their transportation needs.
                             Your satisfaction is our destination.
                         </div>
 

@@ -44,7 +44,7 @@ export default function Navbar() {
 
     return (
         <nav className="flex flex-col w-full sticky top-0 bg-white z-50 shadow">
-        <div className="flex justify-between items-center bg-white px-4 py-2 gap-12">
+            <div className="flex justify-between items-center bg-white px-4 py-2 gap-12">
                 <div className="flex-1 flex justify-evenly items-center">
                     <a href="/" className="block">
                         <img src={logo} alt="DTS" className="max-w-full h-auto" />
@@ -61,7 +61,7 @@ export default function Navbar() {
                             <img src={searchicon} alt="Search" className="w-5 h-5" />
                         </button>
                     </div>
-                    <div className="flex items-center  justify-center space-x-4">
+                    <div className="flex items-center  justify-center xl:pace-x-12 xxl:space-x-4 lg:space-x-10 md:space-x-8 space-x-5">
                         <a href="tel:9310488108,9315535846" className="flex items-center gap-2 text-[#25D366] font-medium">
                             <img src={callicon} alt="phone-icon" className="h-7" />
                             <span className="text-[#201F1D] text-xl font-medium">
@@ -83,40 +83,40 @@ export default function Navbar() {
                     <CarActionButtons buttonName="Book Ride" />
                 </div>
             </div>
-        <div className="bg-[#FF9307] py-4">
-            <ul className="flex items-center justify-center space-x-16">
-                <li><a href="/" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline active:text-white">HOME</a></li>
-                <li><a href="/#about-us" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline">ABOUT US</a></li>
-                <li
-                    className="relative mega-menu"
-                    onMouseEnter={() => handleMouseEnter('services')}
-                    onMouseLeave={handleMouseLeave}
-                >
-                    <a href="#/ourservices" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline">
-                        OUR SERVICES
-                        <FaChevronDown className="inline ml-2" />
-                    </a>
-                    {openMenu === 'services' && (
-                        <div ref={menuRef} className="mega-menu-content">
-                            <ul>
-                                {services.map((service) => (
-                                    <li key={service.text} className="mega-menu-item">
-                                        <Link to={service.link}
-                                            className="block px-4 py-2 text-[#252525] hover:bg-gray-100 transition duration-300"
-                                        >
-                                            {service.text}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-                </li>
-                <li><a href="#/gallery" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline">GALLERY</a></li>
-                <li><a href="#/contact-us" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline">CONTACT US</a></li>
-            </ul>
-        </div>
-    </nav>
-    
+            <div className="bg-[#FF9307] py-4">
+                <ul className="flex items-center justify-center space-x-16">
+                    <li><a href="/" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline active:text-white">HOME</a></li>
+                    <li><a href="/#about-us" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline">ABOUT US</a></li>
+                    <li
+                        className="relative mega-menu"
+                        onMouseEnter={() => handleMouseEnter('services')}
+                        onMouseLeave={handleMouseLeave}
+                    >
+                        <a href="#/ourservices" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline">
+                            OUR SERVICES
+                            <FaChevronDown className="inline ml-2" />
+                        </a>
+                        {openMenu === 'services' && (
+                            <div ref={menuRef} className="mega-menu-content">
+                                <ul>
+                                    {services.map((service) => (
+                                        <li key={service.text} className="mega-menu-item">
+                                            <Link to={service.link}
+                                                className="block px-4 py-2 text-[#252525] hover:bg-gray-100 transition duration-300"
+                                            >
+                                                {service.text}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </li>
+                    <li><a href="#/gallery" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline">GALLERY</a></li>
+                    <li><a href="#/contact-us" className="text-[#252525] hover:text-white text-[22px] font-medium transition duration-300 menu-item-underline">CONTACT US</a></li>
+                </ul>
+            </div>
+        </nav>
+
     );
 }

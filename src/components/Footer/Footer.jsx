@@ -72,13 +72,13 @@ export default function Footer() {
                 <div className="max-w-6xl flex justify-between items-center w-full py-6">
                     <div className='flex items-center space-x-3 justify-center'>
                         <img src={query} alt="query" className='max-w-full mt-2' />
-                        <h1 className='text-4xl text-[#252525] font-extrabold'>Have a Query?</h1>
+                        <h1 className='xxl:text-4xl xl:text-3xl lg:text-2xl md:text-xl text-sm text-[#252525] font-extrabold'>Have a Query?</h1>
                     </div>
-                    <div className='flex items-center justify-center space-x-3'>
-                        <a href="https://wa.me/9310488108" target="_blank" rel="noopener noreferrer" className='flex items-center  space-x-3'>
-                            <img src={phone} alt="phone" className='max-w-full mt-2 h-10' />
-                            <h6 className='text-4xl text-[#353535] font-bold m-0 p-0'>
-
+                    <div className='flex items-center justify-center xxl:space-x-3 xl:space-x-2 space-x-1'>
+                        <a href="tel:+9310488108" target="_blank" rel="noopener noreferrer" className='flex items-center  space-x-3'>
+                            <img src={phone} alt="phone" className='max-w-full mt-2 xxl:h-10 xl:h-7 lg:h-6 md:h-5 h-4 ' />
+                            <h6 className='xxl:text-4xl xl:text-2xl lg:text-xl md:text-2xl text-xl  text-[#353535] font-bold m-0 p-0'>
+                                <span> 9315535846</span>/
                                 9310488108
                             </h6></a>
                     </div>
@@ -109,7 +109,7 @@ export default function Footer() {
                         <div >
                             <h1 className='text-3xl font-semibold text-white pb-5'>Social Networks</h1>
                             <div className='flex gap-5'>
-                                <a href="https://www.facebook.com/share/6Tcqa3wSLwCaTWg2/?mibextid=LQQJ4d" target='_blank'><img src={fb} alt="Facebook" className='max-w-full' />
+                                <a href="https://www.facebook.com/share/XkKe7o62iqVRS5CY/?mibextid=LQQJ4d" target='_blank'><img src={fb} alt="Facebook" className='max-w-full' />
                                 </a>
                                 <a href="https://www.instagram.com/dashmeshtravelservices/?igsh=MTNsNGxsb3U1a3FydA%3D%3D" target='_blank'>
                                     <img src={instra} alt="Instagram" className='max-w-full' /></a>

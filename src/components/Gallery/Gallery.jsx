@@ -1,3 +1,5 @@
+import React, { useState, useCallback, useEffect } from 'react';
+import { IoChevronBackOutline, IoChevronForwardOutline, IoCloseOutline } from 'react-icons/io5';
 import banner from '../../../public/Imgae/gallerybanner.png'
 import gallery from '../../../public/Imgae/gallery (25).png'
 import gallery1 from '../../../public/Imgae/gallery (24).png'
@@ -25,35 +27,121 @@ import gallery22 from '../../../public/Imgae/gallery (3).png'
 import gallery23 from '../../../public/Imgae/gallery (2).png'
 import gallery24 from '../../../public/Imgae/gallery (1).png'
 import gallery25 from '../../../public/Imgae/gallery 26.png'
-import gallery26 from '../../../public/Imgae/gallery 27.png'
+import gallery26 from '../../../public/Imgae/gallery 27.png';
 
-export default function Gallery(){
-    const images = [
-        gallery, gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, 
-        gallery10, gallery11, gallery12, gallery7,gallery8,gallery9 , gallery13,gallery14, gallery15, gallery16, gallery17, gallery18, 
-        gallery19, gallery20, gallery21, gallery22, gallery23, gallery24,gallery25,gallery26,gallery2
-    ];
-    return(
-        <>
-        <div className="w-screen">
-            <img src={banner} alt="banner" className='w-full' />
-          
+const ImageCarousel = ({ images, currentIndex, onClose, onPrev, onNext }) => {
+    const handleKeyDown = useCallback((e) => {
+        if (e.key === 'ArrowLeft') onPrev();
+        if (e.key === 'ArrowRight') onNext();
+        if (e.key === 'Escape') onClose();
+    }, [onPrev, onNext, onClose]);
 
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [handleKeyDown]);
+
+    const handleBackdropClick = (e) => {
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+
+    return (
+        <div
+            className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+            onClick={handleBackdropClick}
+        >
+            <div className="relative max-w-4xl w-full">
+                <button
+                    onClick={onClose}
+                    className="absolute top-4 right-4 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
+                >
+                    <IoCloseOutline size={24} />
+                </button>
+                <img
+                    src={images[currentIndex]}
+                    alt={`Large gallery image ${currentIndex + 1}`}
+                    className="w-full h-auto"
+                />
+                <button
+                    onClick={onPrev}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
+                >
+                    <IoChevronBackOutline size={24} />
+                </button>
+                <button
+                    onClick={onNext}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
+                >
+                    <IoChevronForwardOutline size={24} />
+                </button>
+            </div>
         </div>
-        <div className='w-screen flex justify-center items-center flex-col py-12'>
-        <h1 className='text-4xl font-[700] text-[#252525] pb-8'> Gallery</h1>
-        <div className='max-w-6xl flex flex-wrap justify-center items-center gap-8'>
+    );
+};
 
-   
+export default function Gallery() {
+    const images = [
+        gallery, gallery1, gallery2, gallery3, gallery4, gallery5, gallery6,
+        gallery10, gallery11, gallery12, gallery7, gallery8, gallery9, gallery13,
+        gallery14, gallery15, gallery16, gallery17, gallery18, gallery19, gallery20,
+        gallery21, gallery22, gallery23, gallery24, gallery25, gallery26, gallery2
+    ];
 
-            {images.map((image, index) => (
-                <img key={index} src={image} alt={`Gallery image ${index + 1}`} className='transition-transform duration-300 hover:scale-110 cursor-pointer' />
-            ))}
+    const [modalOpen, setModalOpen] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+    const openModal = (index) => {
+        setCurrentImageIndex(index);
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex === 0 ? images.length - 1 : prevIndex - 1
+        );
+    };
+
+    const nextImage = () => {
+        setCurrentImageIndex((prevIndex) =>
+            prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        );
+    };
+
+    return (
+        <>
+            <div className="w-screen">
+                <img src={banner} alt="banner" className="w-full" />
+            </div>
+            <div className="w-screen flex justify-center items-center flex-col py-12">
+                <h1 className="text-4xl font-[700] text-[#252525] pb-8">Gallery</h1>
+                <div className="max-w-6xl flex flex-wrap justify-center items-center gap-8">
+                    {images.map((image, index) => (
+                        <img
+                            key={index}
+                            src={image}
+                            alt={`Gallery image ${index + 1}`}
+                            className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+                            onClick={() => openModal(index)}
+                        />
+                    ))}
+                </div>
             </div>
 
-        </div>
-
+            {modalOpen && (
+                <ImageCarousel
+                    images={images}
+                    currentIndex={currentImageIndex}
+                    onClose={closeModal}
+                    onPrev={prevImage}
+                    onNext={nextImage}
+                />
+            )}
         </>
-    )
+    );
 }
