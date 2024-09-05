@@ -10,7 +10,7 @@ import axios from 'axios';
 export default function ContactForm() {
   const [formValues, setFormValues] = useState({
     fullName: '',
-    phoneNumber: '',
+    phone: '',
     email: '',
     message: ''
   });
@@ -18,7 +18,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState({});
   const [formSuccess, setFormSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [msg,setMsg] = useState()
+  const [msg, setMsg] = useState()
 
   useEffect(() => {
     let timer;
@@ -41,7 +41,7 @@ export default function ContactForm() {
 
   const validate = () => {
     let tempErrors = {};
-    tempErrors.name = formValues.name ? '' : 'This field is required.';
+    tempErrors.fullName = formValues.fullName ? '' : 'This field is required.';
     tempErrors.phone = formValues.phone ? '' : 'This field is required.';
     tempErrors.email = formValues.email ? '' : 'This field is required.';
     tempErrors.message = formValues.message ? '' : 'This field is required.';
@@ -59,13 +59,14 @@ export default function ContactForm() {
       setLoading(true); // Set loading state while submitting
       try {
         const formData = new FormData();
-        formData.append('fullName', formValues.name);
-        formData.append('phoneNumber', formValues.phone);
+        formData.append('fullName', formValues.fullName);
+        formData.append('phone', formValues.phone);
         formData.append('email', formValues.email);
         formData.append('message', formValues.message);
 
+        console.log(formData);
 
-        const res = await axios.post('https://dtstaxi.com/Apis/inquiry.php', formData, {
+        const res = await axios.post('https://www.dtstaxi.com/Apis/inquiry.php', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           }
@@ -77,7 +78,7 @@ export default function ContactForm() {
           setMsg(res.data)
           setFormValues({
             fullName: '',
-            phoneNumber: '',
+            phone: '',
             email: '',
             message: ''
           });
@@ -119,16 +120,16 @@ export default function ContactForm() {
                 Ride With Us
               </h3>
               <TextField
-                id="name"
+                id="fullName"
                 label="Full Name *"
                 variant="outlined"
-                name="name"
+                name="fullName"
                 type='text'
-                value={formValues.name}
+                value={formValues.fullName}
                 onChange={handleChange}
                 InputProps={{ style: { backgroundColor: '#ffffff' } }}
-                error={!!errors.name}
-                helperText={errors.name}
+                error={!!errors.fullName}
+                helperText={errors.fullName}
                 sx={{ mb: 2, width: '100%' }}
               />
               <TextField
