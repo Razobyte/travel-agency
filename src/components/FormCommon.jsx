@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import fb from '../../public/Imgae/facebook.png';
@@ -6,9 +6,10 @@ import instra from '../../public/Imgae/instagram.png';
 import wp from '../../public/Imgae/whatsapp.png';
 import phone from '../../public/Imgae/telephone.png';
 import Checkbox from '@mui/material/Checkbox';
+import axios from 'axios';
 
 const FormCommon = () => {
-    const [formData, setFormData] = useState({
+    const [formValue, setFormValue] = useState({
         fromCity: '',
         toDestination: '',
         pickupDate: '',
@@ -21,10 +22,21 @@ const FormCommon = () => {
 
     const [errors, setErrors] = useState({});
     const [selectedForm, setSelectedForm] = useState('Taxi');
-
+    const [formSuccess, setFormSuccess] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [msg, setMsg] = useState()
+    useEffect(() => {
+        let timer;
+        if (formSuccess) {
+            timer = setTimeout(() => {
+                setFormSuccess(false); // Hide success message after 5 seconds
+            }, 5000);
+        }
+        return () => clearTimeout(timer); // Clean up the timer on component unmount
+    }, [formSuccess]);
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
+        setFormValue(prevState => ({
             ...prevState,
             [name]: value
         }));
@@ -32,18 +44,18 @@ const FormCommon = () => {
 
     const validateForm = () => {
         let tempErrors = {};
-        if (!formData.fromCity) tempErrors.fromCity = 'From city is required';
-        if (!formData.toDestination) tempErrors.toDestination = 'Destination is required';
-        if (!formData.pickupDate) tempErrors.pickupDate = 'Pickup date is required';
-        if (!formData.pickupTime) tempErrors.pickupTime = 'Pickup time is required';
+        if (!formValue.fromCity) tempErrors.fromCity = 'From city is required';
+        if (!formValue.toDestination) tempErrors.toDestination = 'Destination is required';
+        if (!formValue.pickupDate) tempErrors.pickupDate = 'Pickup date is required';
+        if (!formValue.pickupTime) tempErrors.pickupTime = 'Pickup time is required';
         if (selectedForm === 'Rental') {
-            if (!formData.returnDate) tempErrors.returnDate = 'Return date is required';
-            if (!formData.returnTime) tempErrors.returnTime = 'Return time is required';
+            if (!formValue.returnDate) tempErrors.returnDate = 'Return date is required';
+            if (!formValue.returnTime) tempErrors.returnTime = 'Return time is required';
         }
-        if (!formData.contactPhone) tempErrors.contactPhone = 'Contact number is required';
-        else if (!/^[0-9]{10}$/.test(formData.contactPhone)) tempErrors.contactPhone = 'Please enter a valid 10-digit phone number';
-        if (!formData.contactEmail) tempErrors.contactEmail = 'Email is required';
-        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.contactEmail)) tempErrors.contactEmail = 'Please enter a valid email address';
+        if (!formValue.contactPhone) tempErrors.contactPhone = 'Contact number is required';
+        else if (!/^[0-9]{10}$/.test(formValue.contactPhone)) tempErrors.contactPhone = 'Please enter a valid 10-digit phone number';
+        if (!formValue.contactEmail) tempErrors.contactEmail = 'Email is required';
+        else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formValue.contactEmail)) tempErrors.contactEmail = 'Please enter a valid email address';
 
         setErrors(tempErrors);
         return Object.keys(tempErrors).length === 0;
@@ -51,24 +63,66 @@ const FormCommon = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (validateForm()) {
-            console.log('Form data submitted:', formData);
-            alert('Form submitted successfully!');
-            setFormData({
-                fromCity: '',
-                toDestination: '',
-                pickupDate: '',
-                pickupTime: '',
-                returnDate: '',
-                returnTime: '',
-                contactPhone: '',
-                contactEmail: '',
-            });
-        } else {
-            console.log('Form has errors. Please correct them.');
-        }
-    };
 
+        fetchContactData(formValue);
+    };
+    const fetchContactData = async (data) => {
+        if (validateForm()) {
+            setLoading(true); // Set loading state while submitting
+            try {
+                console.log('Data received:', data);
+
+                let formData = new FormData();
+                formData.append('fromCity', data.fromCity);
+                formData.append('toDestination', data.toDestination);
+                formData.append('pickupDate', data.pickupDate);
+                formData.append('pickupTime', data.pickupTime);
+                formData.append('returnDate', data.returnDate);
+                formData.append('returnTime', data.returnTime);
+                formData.append('phone', data.contactPhone);
+                formData.append('email', data.contactEmail);              
+
+                const res = await axios.post('https://www.dtstaxi.com/Apis/inquiry.php', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    }
+                });
+
+                console.log('API Response:', res);
+
+                if (res.data && res.data.msgcode === "1") {
+                    console.log('Form submitted successfully', res.data);
+                    setFormSuccess(true);
+                    setMsg(res.data);
+                    setFormValue({
+                        fromCity: '',
+                        toDestination: '',
+                        pickupDate: '',
+                        pickupTime: '',
+                        returnDate: '',
+                        returnTime: '',
+                        contactPhone: '',
+                        contactEmail: '',
+                    });
+                } else {
+                    console.error('Unexpected response:', res.data);
+                    setMsg(res.data);
+                }
+            } catch (error) {
+                if (error.response) {
+                    console.error('Server error:', error.response.data);
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                } else {
+                    console.error('Error setting up the request:', error.message);
+                }
+            } finally {
+                setLoading(false); // Reset loading state
+            }
+
+            setErrors({});
+        }
+    }
     const handleFormSelection = (formType) => {
         setSelectedForm(formType);
     };
@@ -116,29 +170,29 @@ const FormCommon = () => {
                     <form onSubmit={handleSubmit} className="w-full">
                         <Box className="flex flex-wrap gap-1">
                             <Box className="flex-1">
-                            
-                                    {selectedForm === 'Rental' ? (
-                                        <label htmlFor="" className="mb-in" style={{ fontSize: '18px', fontWeight: '600', color: '#303030' }}>
-                                         Pickup
-                                        </label> 
-                                        
-                                    ):
-                                    (
-                                     <label htmlFor="" className="mb-in" style={{ fontSize: '18px', fontWeight: '600', color: '#303030' }}>
-                                        From
+
+                                {selectedForm === 'Rental' ? (
+                                    <label htmlFor="" className="mb-in" style={{ fontSize: '18px', fontWeight: '600', color: '#303030' }}>
+                                        Pickup
                                     </label>
+
+                                ) :
+                                    (
+                                        <label htmlFor="" className="mb-in" style={{ fontSize: '18px', fontWeight: '600', color: '#303030' }}>
+                                            From
+                                        </label>
                                     )
-                                    
-                                
+
+
                                 }
-                             
+
 
                                 <TextField
                                     name="fromCity"
                                     label={selectedForm === 'Rental' ? 'House no-133C, Dayanand Colony, Sector 6, Gurugram' : 'City, Airport, Station, etc.'}
                                     variant="outlined"
                                     fullWidth
-                                    value={formData.fromCity}
+                                    value={formValue.fromCity}
                                     onChange={handleChange}
                                     error={!!errors.fromCity}
                                     helperText={errors.fromCity}
@@ -151,7 +205,7 @@ const FormCommon = () => {
                                     variant="outlined"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    value={formData.pickupDate}
+                                    value={formValue.pickupDate}
                                     onChange={handleChange}
                                     error={!!errors.pickupDate}
                                     helperText={errors.pickupDate}
@@ -163,7 +217,7 @@ const FormCommon = () => {
                                     variant="outlined"
                                     type='number'
                                     fullWidth
-                                    value={formData.contactPhone}
+                                    value={formValue.contactPhone}
                                     onChange={handleChange}
                                     error={!!errors.contactPhone}
                                     helperText={errors.contactPhone}
@@ -176,7 +230,7 @@ const FormCommon = () => {
                                         variant="outlined"
                                         fullWidth
                                         InputLabelProps={{ shrink: true }}
-                                        value={formData.returnDate}
+                                        value={formValue.returnDate}
                                         onChange={handleChange}
                                         error={!!errors.returnDate}
                                         helperText={errors.returnDate}
@@ -190,7 +244,7 @@ const FormCommon = () => {
                                         variant="outlined"
                                         fullWidth
                                         InputLabelProps={{ shrink: true }}
-                                        value={formData.returnDate}
+                                        value={formValue.returnDate}
                                         onChange={handleChange}
                                         error={!!errors.returnDate}
                                         helperText={errors.returnDate}
@@ -205,7 +259,7 @@ const FormCommon = () => {
                                     label="Destination"
                                     variant="outlined"
                                     fullWidth
-                                    value={formData.toDestination}
+                                    value={formValue.toDestination}
                                     onChange={handleChange}
                                     error={!!errors.toDestination}
                                     helperText={errors.toDestination}
@@ -218,7 +272,7 @@ const FormCommon = () => {
                                     variant="outlined"
                                     fullWidth
                                     InputLabelProps={{ shrink: true }}
-                                    value={formData.pickupTime}
+                                    value={formValue.pickupTime}
                                     onChange={handleChange}
                                     error={!!errors.pickupTime}
                                     helperText={errors.pickupTime}
@@ -230,7 +284,7 @@ const FormCommon = () => {
                                     type="email"
                                     variant="outlined"
                                     fullWidth
-                                    value={formData.contactEmail}
+                                    value={formValue.contactEmail}
                                     onChange={handleChange}
                                     error={!!errors.contactEmail}
                                     helperText={errors.contactEmail}
@@ -243,7 +297,7 @@ const FormCommon = () => {
                                         variant="outlined"
                                         fullWidth
                                         InputLabelProps={{ shrink: true }}
-                                        value={formData.returnTime}
+                                        value={formValue.returnTime}
                                         onChange={handleChange}
                                         error={!!errors.returnTime}
                                         helperText={errors.returnTime}
@@ -257,7 +311,7 @@ const FormCommon = () => {
                                         variant="outlined"
                                         fullWidth
                                         InputLabelProps={{ shrink: true }}
-                                        value={formData.returnTime}
+                                        value={formValue.returnTime}
                                         onChange={handleChange}
                                         error={!!errors.returnTime}
                                         helperText={errors.returnTime}
@@ -267,18 +321,23 @@ const FormCommon = () => {
                             </Box>
                         </Box>
                         <div className='flex justify-center items-center py-4'>
-                            <button type="submit" className='text-[#252525] bg-[#FF9307] text-[15px] font-[800] px-40 py-4 rounded'>Submit Enquiry</button>
+                            <button type="submit" className='text-[#252525] bg-[#FF9307] text-[15px] font-[800] px-40 py-4 rounded'> {loading ? 'Submitting...' : 'Submit Enquiry'}</button>
                         </div>
+                        {formSuccess && (
+                            <div className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md">
+                                <p>{msg.message}</p>
+                            </div>
+                        )}
                     </form>
                 </Box>
                 <div className='flex justify-center items-center'>
-      <Checkbox />
-      <p className='text-center'>I hereby declare the terms and conditions</p>
-    </div>
+                    <Checkbox />
+                    <p className='text-center text-black'>I hereby declare the terms and conditions</p>
+                </div>
                 <div className='flex justify-center items-center gap-3'>
-                <a href="https://www.facebook.com/share/6Tcqa3wSLwCaTWg2/?mibextid=LQQJ4d" target='_blank'> <img src={fb} alt="fb" className='max-w-full' /> </a>
-                <a href="https://www.instagram.com/dashmeshtravelservices/?igsh=MTNsNGxsb3U1a3FydA%3D%3D"  target='_blank'> 
-                  <img src={instra} alt="fb" className='max-w-full' /> </a>
+                    <a href="https://www.facebook.com/share/6Tcqa3wSLwCaTWg2/?mibextid=LQQJ4d" target='_blank'> <img src={fb} alt="fb" className='max-w-full' /> </a>
+                    <a href="https://www.instagram.com/dashmeshtravelservices/?igsh=MTNsNGxsb3U1a3FydA%3D%3D" target='_blank'>
+                        <img src={instra} alt="fb" className='max-w-full' /> </a>
                     <a href="https://wa.me/9310488108" target='_blank'><img src={wp} alt="fb" className='max-w-full' /></a>
                     <a href="https://wa.me/9310488108" target='_blank'><img src={phone} alt="fb" className='max-w-full' /></a>
                 </div>
