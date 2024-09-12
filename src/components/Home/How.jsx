@@ -8,11 +8,11 @@ import './Home.css'
 
 const Step = ({ icon, title, description, isEven, isLast }) => (
   
-  <div className={`relative w-full bg-white rounded-lg px-4 py-6 shadow-md zoom-animation  ${isEven ? 'md:mt-16' : 'md:mb-16'}`}>
+  <div className={`relative w-full bg-white rounded-lg sm:px-5 px-1  sm:py-6 py-3 shadow-md zoom-animation  ${isEven ? 'sm:md:mt-16 mt-0' : 'sm:md:mb-16 mb-0'}`}>
     <div className="flex flex-col items-center text-center">
-      <img src={icon} alt={title} width={50} height={50} className="mb-4" />
-      <h3 className="font-semibold text-lg mb-2">{title}</h3>
-      <p className="text-sm text-gray-600">{description}</p>
+      <img src={icon} alt={title} className="sm:mb-4 mb-1 sm:w-24 sm:h-24 h-12 w-12 object-contain sm:pt-0 pt-2" />
+      <h3 className="font-semibold sm:text-lg text-sm sm:mb-2 mb-0">{title}</h3>
+      <p className="text-sm sm:flex hidden text-gray-600">{description}</p>
     </div>
     {!isLast && (
       <div className="absolute top-1/2 -right-4 transform -translate-y-1/2">
@@ -48,11 +48,11 @@ export default function How() {
 
   return (
     <div 
-      className="w-full flex flex-col justify-center items-center py-16 bg-cover bg-center bg-no-repeat"
+      className="w-full flex flex-col justify-center items-center lg:py-16 sm:py-8 py-4 bg-cover bg-center bg-no-repeat"
       style={{backgroundImage: `url(${bg})`}}
     >
-      <h2 className="text-4xl font-bold text-white mb-12">How It Work</h2>
-      <div className="w-full max-w-6xl flex  justify-between items-stretch gap-8 ">
+      <h2 className="lg:text-4xl md:text-3xl sm:text-2xl  text-xl  font-bold lg:mb-12 md:mb-6 mb-2 text-white">How It Work</h2>
+      <div className="w-full max-w-6xl flex  justify-between items-stretch lg:gap-8 sm:gap-4 gap-2 md:px-0 px-3">
         {steps.map((step, index) => (
           <Step key={index} {...step} isEven={index % 2 !== 1} isLast={index === steps.length - 5} />
         ))}

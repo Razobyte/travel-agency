@@ -29,58 +29,6 @@ import gallery24 from '../../../public/Imgae/gallery (1).png'
 import gallery25 from '../../../public/Imgae/gallery 26.png'
 import gallery26 from '../../../public/Imgae/gallery 27.png';
 
-const ImageCarousel = ({ images, currentIndex, onClose, onPrev, onNext }) => {
-    const handleKeyDown = useCallback((e) => {
-        if (e.key === 'ArrowLeft') onPrev();
-        if (e.key === 'ArrowRight') onNext();
-        if (e.key === 'Escape') onClose();
-    }, [onPrev, onNext, onClose]);
-
-    useEffect(() => {
-        document.addEventListener('keydown', handleKeyDown);
-        return () => document.removeEventListener('keydown', handleKeyDown);
-    }, [handleKeyDown]);
-
-    const handleBackdropClick = (e) => {
-        if (e.target === e.currentTarget) {
-            onClose();
-        }
-    };
-
-    return (
-        <div
-            className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
-            onClick={handleBackdropClick}
-        >
-            <div className="relative max-w-4xl w-full">
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
-                >
-                    <IoCloseOutline size={24} />
-                </button>
-                <img
-                    src={images[currentIndex]}
-                    alt={`Large gallery image ${currentIndex + 1}`}
-                    className="w-full h-auto"
-                />
-                <button
-                    onClick={onPrev}
-                    className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
-                >
-                    <IoChevronBackOutline size={24} />
-                </button>
-                <button
-                    onClick={onNext}
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
-                >
-                    <IoChevronForwardOutline size={24} />
-                </button>
-            </div>
-        </div>
-    );
-};
-
 export default function Gallery() {
     const images = [
         gallery, gallery1, gallery2, gallery3, gallery4, gallery5, gallery6,
@@ -113,6 +61,27 @@ export default function Gallery() {
         );
     };
 
+    const handleKeyDown = useCallback((e) => {
+        if (e.key === 'ArrowLeft') prevImage();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'Escape') closeModal();
+    }, [prevImage, nextImage, closeModal]);
+
+    useEffect(() => {
+        if (modalOpen) {
+            document.addEventListener('keydown', handleKeyDown);
+        } else {
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [handleKeyDown, modalOpen]);
+
+    const handleBackdropClick = (e) => {
+        if (e.target === e.currentTarget) {
+            closeModal();
+        }
+    };
+
     return (
         <>
             <div className="w-screen">
@@ -126,7 +95,7 @@ export default function Gallery() {
                             key={index}
                             src={image}
                             alt={`Gallery image ${index + 1}`}
-                            className="transition-transform duration-300 hover:scale-110 cursor-pointer"
+                            className="transition-transform duration-300 hover:scale-110 cursor-pointer max-w-full h-auto object-cover"
                             onClick={() => openModal(index)}
                         />
                     ))}
@@ -134,13 +103,36 @@ export default function Gallery() {
             </div>
 
             {modalOpen && (
-                <ImageCarousel
-                    images={images}
-                    currentIndex={currentImageIndex}
-                    onClose={closeModal}
-                    onPrev={prevImage}
-                    onNext={nextImage}
-                />
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+                    onClick={handleBackdropClick}
+                >
+                    <div className="relative max-w-2xl w-full">
+                        <button
+                            onClick={closeModal}
+                            className="absolute top-4 right-4 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
+                        >
+                            <IoCloseOutline size={24} />
+                        </button>
+                        <img
+                            src={images[currentImageIndex]}
+                            alt={`Large gallery image ${currentImageIndex + 1}`}
+                            className="w-full h-[650px] object-cover"
+                        />
+                        <button
+                            onClick={prevImage}
+                            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
+                        >
+                            <IoChevronBackOutline size={24} />
+                        </button>
+                        <button
+                            onClick={nextImage}
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 bg-gray-800 bg-opacity-50 rounded-full p-2"
+                        >
+                            <IoChevronForwardOutline size={24} />
+                        </button>
+                    </div>
+                </div>
             )}
         </>
     );

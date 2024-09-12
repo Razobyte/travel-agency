@@ -42,8 +42,8 @@ const CarActionButtons = ({buttonName}) => {
     <div>
       <button
         onClick={openBooking}
-        className="sm:mt-6 sm:px-8  px-3  py-1 sm:py-2 bg-[#FF9307] text-[#ffff] rounded  rounded hover:bg-orange-500
-         hover:text-[#252525] transition duration-300 sm:text-2xl text-[10px] sm:font-bold font-normal"
+        className="sm:mt-6 sm:px-8  px-3  py-1 sm:py-2 bg-[#FF9307] text-[#ffff]   rounded hover:bg-orange-500
+         hover:text-[#252525] transition duration-300 lg:text-2xl sm:text-lg xs:text-sm text-sm sm:font-bold font-medium"
       >
       {buttonName}
       </button>
