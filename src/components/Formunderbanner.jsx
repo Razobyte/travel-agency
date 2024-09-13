@@ -134,7 +134,7 @@ const FormComponent = () => {
 
     return (
         <div className='flex flex-col justify-center items-center py-5'>
-            <div className='lg:shadow bg-white p-6 rounded border-t border-gray-200'>
+            <div className='lg:shadow bg-white sm:p-6 p-2 rounded border-t border-gray-200'>
                 <h1 className='text-center text-[#303030] text-[25px] font-[700] py-4'>Countless destinations at unbeatable prices</h1>
                 {/* <div className='flex justify-center items-center text-[20px] font-semibold mb-3'>
                     <RadioGroup
@@ -257,7 +257,7 @@ const FormComponent = () => {
                                     />
                                 )}
                             </Box>
-                            <Box className="flex-1 min-w-[300px]">
+                            <Box className="sm:flex-1 hidden min-w-[300px]">
                                 <label htmlFor="" className="mb-in" style={{ fontSize: '18px', fontWeight: '600', color: "#303030" }}>To</label>
                                 <TextField
                                     name="toDestination"

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import image from '../../../public/Imgae/arrow.png';
 import bg from '../../../public/Imgae/cabs-bg.png';
+import CarActionButtons from '../Navbar/NavbarButton';
 
 const CabServiceSection = ({ title, routes }) => (
   <div className="flex flex-col items-center p-3 justify-center bg-black bg-opacity-60 rounded-lg shadow-md flex-shrink-0 w-full sm:w-80 md:w-96 lg:w-1/4">
@@ -68,13 +69,11 @@ const CabServices = () => {
             <CabServiceSection key={index} title={service.title} routes={service.routes} />
           ))}
         </div>
-        <div className='flex justify-center items-center mt-8'>
-          <button className="bg-[#FF9307] text-white font-bold rounded-lg hover:bg-orange-600 transition duration-300 
-          px-6 py-2 text-base md:text-lg"
-                  onClick={() => navigate('/ourservices/tempo')}>
-            Enquiry Now
-          </button>
-        </div>
+        {/* 
+         */}
+       <div className='justify-center items-center flex'>
+       <CarActionButtons buttonName="Enquiry Now"/>
+       </div>
       </div>
     </div>
   );

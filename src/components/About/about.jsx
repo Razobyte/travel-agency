@@ -1,4 +1,3 @@
-
 import banner from '../../../public/Imgae/aboutbanner.png';
 import taxi from '../../../public/Imgae/taxi-driver.png';
 import vision from '../../../public/Imgae/vision.png'
@@ -19,62 +18,62 @@ export default function About() {
     return (
         <>
             <div className="w-screen">
-                <img src={banner} alt="banner" className='w-full' />
+                <img src={banner} alt="banner" className='w-full h-auto' />
             </div>
-            <div className='w-screen flex items-center justify-center'>
-                <div className='max-w-6xl flex gap-12 items-center justify-center py-12'>
+            <div className='w-screen flex items-center justify-center px-4'>
+                <div className='max-w-6xl flex flex-col md:flex-row gap-8 md:gap-12 items-center lg:py-12 md:py-6 py-4'>
                     <div className='w-full'>
-                        <h1 className='text-4xl font-[700] py-5 color-[#252525]'>About DTS</h1>
-                        <div className='text-md text-[#252525] font-normal'>Welcome to DTS, where your journey is our priority. Our story began in 2011
+                        <h1 className='sm:text-3xl text-xl lg:text-4xl font-bold text-[#252525] sm:py-5 py-2'>About DTS</h1>
+                        <div className='text-sm md:text-md text-[#252525] font-normal'>
+                            Welcome to DTS, where your journey is our priority. Our story began in 2011
                             with a simple yet ambitious goal: to provide reliable, safe, and comfortable
                             transportation solutions. From our humble beginnings, we have grown steadily,
-                            driven by a commitment to exceptional service and customer satisfaction.</div>
-
-                        <div className='text-md text-[#252525] font-normal pt-1'>
+                            driven by a commitment to exceptional service and customer satisfaction.
+                        </div>
+                        <div className='text-sm md:text-md text-[#252525] font-normal pt-1'>
                             In our early years, we focused on building a foundation of trust with our
                             customers. We listened to their needs, ensured their safety, and delivered
                             comfort in every ride. As word spread, so did our reputation, and we quickly
                             became a trusted name in the industry.
-
                         </div>
-                        <div className='text-md text-[#252525] font-normal pt-1'>
+                        <div className='text-sm md:text-md text-[#252525] font-normal pt-1'>
                             Today, our mission is to redefine your travel experience. We continually strive
                             to exceed your expectations with our unwavering dedication to providing
                             top-notch service. When you choose DTS, you're choosing a company that values
                             your journey as much as you do.
                         </div>
-                        <div className='text-md text-[#252525] font-normal pt-1'>
+                        <div className='text-sm md:text-md text-[#252525] font-normal pt-1'>
                             Discover why 100 of travelers trust DTS for their transportation needs.
                             Your satisfaction is our destination.
                         </div>
-
                     </div>
                     <div className='w-full'>
-                        <img src={taxi} alt="taxi" className='max-w-full h-auto' />
+                        <img src={taxi} alt="taxi" className='w-full h-auto' />
                     </div>
                 </div>
-
             </div>
-            <div className='w-screen flex items-center justify-center bg-[#D9D9D9]'>
-                <div className='max-w-6xl flex gap-12 items-center justify-center py-12'>
-                    <div className='w-full'>
-                        <img src={vision} alt="vision" className='max-w-full h-auto' />
+            <div className='w-screen flex items-center justify-center bg-[#D9D9D9] px-4'>
+                <div className='max-w-6xl flex flex-col md:flex-row gap-8 md:gap-12 items-center lg:py-12 md:py-6 py-4'>
+                    <div className='w-full sm:flex hidden'>
+                        <img src={vision} alt="vision" className='w-full h-auto' />
                     </div>
                     <div className='w-full'>
-                        <h1 className='text-4xl font-[700] py-5 color-[#252525]'>Our Vision</h1>
-                        <div className='text-md text-[#252525] font-normal'>
+                        <h1  className='sm:text-3xl text-xl lg:text-4xl font-bold text-[#252525] sm:py-5 py-0'>Our Vision</h1>
+                        <div className='text-sm md:text-md text-[#252525] font-normal'>
                             At DTS our vision is to set new standards in the transportation
                             sector by combining innovation, efficiency, and sustainability. We aim to be
                             the leading cab service provider, known for our exceptional service quality,
-                            reliability, and commitment to environmental responsibility.</div>
+                            reliability, and commitment to environmental responsibility.
+                        </div>
                     </div>
-
+                    <div className='w-full sm:hidden flex'>
+                        <img src={vision} alt="vision" className='w-full h-auto' />
+                    </div>
                 </div>
-
             </div>
-            <div className='w-screen flex items-center justify-center bg-white'>
+            <div className='w-screen md:flex  hidden items-center justify-center bg-white px-4'>
                 <div className='max-w-6xl py-12'>
-                    <h1 className='text-4xl font-[700] py-5 text-[#252525]'>Our Services</h1>
+                    <h1 className='text-3xl md:text-4xl font-bold text-[#252525] py-5'>Our Services</h1>
                     <div className='flex flex-col gap-6'>
                         <Services
                             imgSrc={ser1}
@@ -104,90 +103,89 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <div className='w-screen flex items-center justify-center'>
-                <div className='max-w-6xl flex gap-12 items-center justify-center py-12'>
+            <div className='w-screen flex items-center justify-center px-4'>
+                <div className='max-w-6xl flex flex-col md:flex-row gap-8 md:gap-12 items-center lg:py-12 md:py-6 py-4'>
                     <div className='w-full'>
-                        <h1 className='text-4xl font-[700] py-5 color-[#252525]'>Our Fleet</h1>
-
-                        <div className='text-md text-[#252525] font-normal'>Our diverse fleet of vehicles is equipped with modern amenities to ensure a
+                        <h1  className='sm:text-3xl text-xl lg:text-4xl font-bold text-[#252525] sm:py-5 py-0'>Our Fleet</h1>
+                        <div className='text-sm md:text-md text-[#252525] font-normal'>
+                            Our diverse fleet of vehicles is equipped with modern amenities to ensure a
                             comfortable and enjoyable ride. From eco-friendly hybrids to luxurious
-                            sedans, we have the perfect vehicle for every occasion.</div>
+                            sedans, we have the perfect vehicle for every occasion.
+                        </div>
                     </div>
                     <div className='w-full'>
-                        <img src={aboutse5} alt="taxi" className='max-w-full h-auto' />
+                        <img src={aboutse5} alt="fleet" className='w-full h-auto' />
                     </div>
                 </div>
-
             </div>
-            <div className='w-screen flex items-center justify-center bg-[#D9D9D9]'>
-                <div className='max-w-6xl flex gap-12 items-center justify-center py-12'>
-                    <div className='w-full'>
-                        <img src={aboutse4} alt="vision" className='max-w-full h-auto' />
+            <div className='w-screen flex items-center justify-center bg-[#D9D9D9] px-4'>
+                <div className='max-w-6xl flex flex-col md:flex-row gap-8 md:gap-12 items-center lg:py-12 md:py-6 py-4'>
+                    <div className='w-full sm:flex hidden'>
+                        <img src={aboutse4} alt="drivers" className='w-full h-auto' />
                     </div>
                     <div className='w-full'>
-                        <h1 className='text-4xl font-[700] py-5 color-[#252525]'>Our Drivers</h1>
-                        <div className='text-md text-[#252525] font-normal'>
+                        <h1 className='sm:text-3xl text-xl lg:text-4xl font-bold text-[#252525] sm:py-5 py-0'>Our Drivers</h1>
+                        <div className='text-sm md:text-md text-[#252525] font-normal'>
                             Our drivers are the backbone of DTS Professionally trained,
                             courteous, and knowledgeable, they prioritize your safety and comfort. With a
                             deep understanding of the city’s routes and traffic patterns, they ensure you
-                            reach your destination on time, every time.</div>
+                            reach your destination on time, every time.
+                        </div>
                     </div>
-
+                    <div className='w-full sm:hidden flex'>
+                        <img src={aboutse4} alt="drivers" className='w-full h-auto' />
+                    </div>
                 </div>
-
             </div>
-            <div className='w-screen flex items-center justify-center'>
-                <div className='max-w-6xl flex gap-12 items-center justify-center py-12'>
+            <div className='w-screen flex items-center justify-center px-4'>
+                <div className='max-w-6xl flex flex-col md:flex-row gap-8 md:gap-12 items-center lg:py-12 md:py-6 py-4'>
                     <div className='w-full'>
-                        <h1 className='text-4xl font-[700] py-5 color-[#252525]'>Safety and Reliability</h1>
-
-                        <div className='text-md text-[#252525] font-normal'>Your safety is paramount at DTS. Our vehicles undergo regular
+                        <h1  className='sm:text-3xl text-xl lg:text-4xl font-bold text-[#252525] sm:py-5 py-0' >Safety and Reliability</h1>
+                        <div className='text-sm md:text-md text-[#252525] font-normal'>
+                            Your safety is paramount at DTS. Our vehicles undergo regular
                             maintenance checks and are equipped with advanced safety features. We
                             adhere to stringent safety protocols to provide you with a secure travel
-                            experience.</div>
+                            experience.
+                        </div>
                     </div>
                     <div className='w-full'>
-                        <img src={aboutse3} alt="taxi" className='max-w-full h-auto' />
+                        <img src={aboutse3} alt="safety" className='w-full h-auto' />
                     </div>
                 </div>
-
             </div>
-            <div className='w-screen flex items-center justify-center bg-[#D9D9D9]'>
-                <div className='max-w-6xl flex gap-12 items-center justify-center py-12'>
+            <div className='w-screen sm:flex hidden items-center justify-center bg-[#D9D9D9] px-4'>
+                <div className='max-w-6xl flex flex-col md:flex-row gap-8 md:gap-12 items-center py-12'>
                     <div className='w-full'>
-                        <img src={aboutse2} alt="vision" className='max-w-full h-auto' />
+                        <img src={aboutse2} alt="sustainability" className='w-full h-auto' />
                     </div>
                     <div className='w-full'>
-                        <h1 className='text-4xl font-[700] py-5 color-[#252525]'>Sustainability</h1>
-                        <div className='text-md text-[#252525] font-normal'>
+                    <h1 className='text-3xl md:text-4xl font-bold text-[#252525] py-5'>Sustainability</h1>
+                        <div className='text-sm md:text-md text-[#252525] font-normal'>
                             We are committed to reducing our carbon footprint. By incorporating eco-
                             friendly practices and maintaining a fleet of fuel-efficient vehicles, we strive
-                            to contribute positively to the environment.</div>
+                            to contribute positively to the environment.
+                        </div>
                     </div>
-
                 </div>
-
             </div>
-            <div className='w-screen flex items-center justify-center'>
-                <div className='max-w-6xl flex gap-12 items-center justify-center py-12'>
+            <div className='w-screen flex items-center justify-center px-4'>
+                <div className='max-w-6xl flex flex-col md:flex-row gap-8 md:gap-12 items-center lg:py-12 md:py-6 py-4'>
                     <div className='w-full'>
-                        <h1 className='text-4xl font-[700] py-5 color-[#252525]'>Customer Satisfaction</h1>
-
-                        <div className='text-md text-[#252525] font-normal'>At DTS we believe in building lasting relationships with our
+                        <h1 className='sm:text-3xl text-xl lg:text-4xl font-bold text-[#252525] sm:py-5 py-0'>Customer Satisfaction</h1>
+                        <div className='text-sm md:text-md text-[#252525] font-normal'>
+                            At DTS, we believe in building lasting relationships with our
                             customers. Our dedicated customer support team is available 24/7 to assist
                             you with your bookings and inquiries, ensuring a seamless and pleasant
-                            experience from start to finish.</div>
+                            experience from start to finish.
+                        </div>
                     </div>
                     <div className='w-full'>
-                        <img src={aboutse1} alt="taxi" className='max-w-full h-auto' />
+                        <img src={aboutse1} alt="customer satisfaction" className='w-full h-auto' />
                     </div>
                 </div>
-
             </div>
             <How/>
-   
-
-
         </>
     )
 }
+

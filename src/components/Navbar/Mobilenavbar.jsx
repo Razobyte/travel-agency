@@ -34,7 +34,7 @@ export default function MobileMenu({ isOpen, onClose }) {
 
     return (
         <div
-            className={`fixed inset-0 z-50 bg-white w-1/3 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+            className={`fixed inset-0 z-50 bg-white w-1/2 transform ${isOpen ? "translate-x-0" : "-translate-x-full"
                 } transition-transform duration-300 ease-in-out sm:hidden`}
         >
             <div className="flex justify-between items-center px-4 py-2 bg-gradient-to-t from-[#fffdfd] to-[#ffff] text-white">
