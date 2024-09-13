@@ -33,7 +33,7 @@ export default function Services() {
             <How />
             <FaqSection />
             <Testimonials />
-            <FormComponent />
+            
         </>
     )
 }

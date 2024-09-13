@@ -43,7 +43,6 @@ const CarActionButtons = () => {
       </div>
     );
   };
-
   return (
     <div>
       <button
@@ -69,5 +68,4 @@ const CarActionButtons = () => {
     </div>
   );
 };
-
 export default CarActionButtons;

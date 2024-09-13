@@ -19,7 +19,7 @@ export default function Tab() {
     if (activeTab === 'Rental') {
       return (
         <select
-          className="border border-gray-300 px-2 py-2 w-full focus:outline-none focus:ring-1 focus:ring-yellow-100  text-sm sm:text-base lg:text-xl"
+          className="border border-gray-300 px-2 py-2 w-full sm:h-auto h-8 focus:outline-none focus:ring-1 focus:ring-yellow-100  text-sm sm:text-base lg:text-xl"
           value={packageSelected}
           onChange={(e) => setPackageSelected(e.target.value)}
         >
@@ -37,7 +37,7 @@ export default function Tab() {
         <input
           type="text"
           placeholder="Enter Destination"
-          className="border border-gray-300 px-2 py-2 w-full focus:outline-none focus:ring-1 focus:ring-yellow-100 
+          className="border border-gray-300 px-2 py-2 w-full sm:h-auto h-8 focus:outline-none focus:ring-1 focus:ring-yellow-100 
            text-sm sm:text-base lg:text-xl"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
@@ -108,7 +108,7 @@ export default function Tab() {
           <input
             type="text"
             placeholder="Current Location"
-            className="border border-gray-300 px-1 sm:px-2 py-1 sm:py-2 w-full focus:outline-none focus:ring-1 focus:ring-yellow-100  text-sm sm:text-base lg:text-xl"
+            className="border border-gray-300 px-1 sm:px-2 py-1 sm:py-2 w-full sm:h-auto h-8  focus:outline-none focus:ring-1 focus:ring-yellow-100  text-sm sm:text-base lg:text-xl"
             value={currentLocation}
             onChange={(e) => setCurrentLocation(e.target.value)}
           />
@@ -121,7 +121,7 @@ export default function Tab() {
             onClick={(e) => isButtonDisabled() && e.preventDefault()}
           >
             <button
-              className={`bg-[#FF9307] px-1 sm:px-2 py-2 sm:w-full rounded  text-sm sm:text-base lg:text-xl font-bold
+              className={`bg-[#FF9307] px-1 sm:px-2 py-2 sm:w-full rounded sm:h-auto h-8  text-sm sm:text-base lg:text-xl font-bold
                  text-[#252525] flex justify-center items-center gap-1 sm:gap-2 ${
                 isButtonDisabled() ? 'opacity-80 cursor-not-allowed' : ''
               }`}

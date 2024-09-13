@@ -51,7 +51,7 @@ export default function Footer() {
 
             <div className='bg-[#201F1D] w-full flex justify-center items-center'>
                 <div className='max-w-6xl w-full px-4'>
-                    <div className='flex flex-col lg:flex-row justify-between py-3 lg:py-10 space-y-8 lg:space-y-0 lg:space-x-8'>
+                    <div className='flex flex-col lg:flex-row justify-between py-3 lg:py-10 space-y-4 lg:space-y-0 lg:space-x-8'>
                         <div className='lg:w-1/4'>
                             <h1 className='text-xl sm:text-3xl sm:font-semibold font-normal text-white sm:pb-3 pb-1'>About DTS</h1>
                             <p className='text-sm sm:text-md font-normal text-white'>
@@ -72,7 +72,6 @@ export default function Footer() {
                                     </ul>
                                 ))}
                             </div>
-
                             <div className='w-1/2 sm:w-1/3 mb-2 sm:mb-0'>
                                 <h1  className='text-xl sm:text-3xl sm:font-semibold font-normal text-white sm:pb-3 pb-1'>Our Services</h1>
                                 {services.map((service, index) => (
@@ -86,22 +85,27 @@ export default function Footer() {
                                     </ul>
                                 ))}
                             </div>
-
                             <div className='w-full sm:w-1/3'>
-                                <h1 className='text-xl sm:text-3xl sm:font-semibold font-normal text-white sm:pb-3 pb-1'>Payment Methods</h1>
-                                <div className='flex gap-5 mb-5'>
-                                    <img src={upi} alt="UPI" className='h-8 sm:h-10' />
-                                    <img src={hand} alt="Hand" className='h-8 sm:h-10' />
-                                    <img src={cash} alt="Cash" className='h-8 sm:h-10' />
-                                </div>
-                                <h1 className='text-xl sm:text-2xl lg:text-3xl font-semibold text-white pb-2'>Social Networks</h1>
-                                <div className='flex gap-5'>
-                                    <a href="https://www.facebook.com/share/XkKe7o62iqVRS5CY/?mibextid=LQQJ4d" target='_blank' rel='noopener noreferrer'>
-                                        <img src={fb} alt="Facebook" className='h-8 sm:h-10' />
-                                    </a>
-                                    <a href="https://www.instagram.com/dashmeshtravelservices/?igsh=MTNsNGxsb3U1a3FydA%3D%3D" target='_blank' rel='noopener noreferrer'>
-                                        <img src={instra} alt="Instagram" className='h-8 sm:h-10' />
-                                    </a>
+                                <div className='flex flex-row sm:flex-col'>
+                                    <div className='w-1/2 sm:w-full'>
+                                        <h1 className='text-xl sm:text-3xl sm:font-semibold font-normal text-white sm:pb-3 pb-1'>Payment Methods</h1>
+                                        <div className='flex gap-2 sm:gap-5 mb-5'>
+                                            <img src={upi} alt="UPI" className='h-6 sm:h-10' />
+                                            <img src={hand} alt="Hand" className='h-6 sm:h-10' />
+                                            <img src={cash} alt="Cash" className='h-6 sm:h-10' />
+                                        </div>
+                                    </div>
+                                    <div className='w-1/2 sm:w-full'>
+                                        <h1 className='text-xl sm:text-2xl lg:text-3xl font-semibold text-white pb-2'>Social Networks</h1>
+                                        <div className='flex gap-3 sm:gap-5'>
+                                            <a href="https://www.facebook.com/share/XkKe7o62iqVRS5CY/?mibextid=LQQJ4d" target='_blank' rel='noopener noreferrer'>
+                                                <img src={fb} alt="Facebook" className='h-6 sm:h-10' />
+                                            </a>
+                                            <a href="https://www.instagram.com/dashmeshtravelservices/?igsh=MTNsNGxsb3U1a3FydA%3D%3D" target='_blank' rel='noopener noreferrer'>
+                                                <img src={instra} alt="Instagram" className='h-6 sm:h-10' />
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -109,8 +113,8 @@ export default function Footer() {
                 </div>
             </div>
 
-            <div className="w-full bg-[#201F1D] flex justify-center items-center sm:py-3 py-0">
-                <div className="max-w-6xl flex flex-col sm:flex-row justify-between w-full px-4 space-y-2 sm:space-y-0">
+            <div className="w-full bg-[#201F1D] flex justify-center items-center sm:py-3 py-2">
+                <div className="max-w-6xl flex  justify-between w-full px-4 space-y-2 sm:space-y-0">
                     <p className="text-white text-xs sm:text-sm">Copyright © 2024 DTS</p>
                     <h6 className="text-white text-xs sm:text-sm">
                         Web services by <a href="https://razobyte.com" target='_blank' rel='noopener noreferrer' className='text-[#FF9307]'>razobyte.com</a>
