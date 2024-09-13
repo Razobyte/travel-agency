@@ -114,7 +114,7 @@ export default function Footer() {
             </div>
 
             <div className="w-full bg-[#201F1D] flex justify-center items-center sm:py-3 py-2">
-                <div className="max-w-6xl flex  justify-between w-full px-4 space-y-2 sm:space-y-0">
+                <div className="max-w-6xl flex  justify-between w-full px-4 space-y-2 sm:space-y-0 sm:gap-0  gap-3">
                     <p className="text-white text-xs sm:text-sm">Copyright © 2024 DTS</p>
                     <h6 className="text-white text-xs sm:text-sm">
                         Web services by <a href="https://razobyte.com" target='_blank' rel='noopener noreferrer' className='text-[#FF9307]'>razobyte.com</a>

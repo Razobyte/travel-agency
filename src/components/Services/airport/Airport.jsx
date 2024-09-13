@@ -35,7 +35,7 @@ export default function Airport() {
             description: "We work with professional drivers and have 24/7 customer care"
         }
     ];
-    
+
 
 
     return (
@@ -44,23 +44,40 @@ export default function Airport() {
                 <img src={banner} alt="banner" className='w-full object-cover' />
             </div>
 
-            <div className='flex  flex-col justify-center items-center w-screen bg-[#E4E4E4] py-8 px-4'>
+            <div className='flex flex-col justify-center items-center w-screen bg-[#E4E4E4] py-8 px-4'>
                 <div className='w-full'>
                     <Swiper
                         spaceBetween={10}
-                        slidesPerView={1}
+                        slidesPerView={1}  // Set default to 1
                         loop={true}
                         modules={[Autoplay]}
                         autoplay={{
                             delay: 3000,
                             disableOnInteraction: false,
                         }}
+                        breakpoints={{
+                            // When window width is >= 640px
+                            640: {
+                                slidesPerView: 1,
+                                spaceBetween: 10
+                            },
+                            // When window width is >= 768px
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 20
+                            },
+                            // When window width is >= 1024px
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 30
+                            }
+                        }}
                     >
                         {slides.map((slide, index) => (
                             <SwiperSlide key={index}>
-                                <div className='flex sm:flex-col flex-row items-center '>
-                                    <div className='bg-[#FF9307]  sm:flex hidden p-4 rounded-full mb-4'>
-                                        <img src={slide.icon} alt={slide.title} className='w-12 h-12 ' />
+                                <div className='flex sm:flex-col flex-row items-center'>
+                                    <div className='bg-[#FF9307] sm:flex hidden p-4 rounded-full mb-4'>
+                                        <img src={slide.icon} alt={slide.title} className='w-12 h-12' />
                                     </div>
                                     <div className='text-center'>
                                         <h2 className='text-[#303030] font-bold text-xl mb-2'>{slide.title}</h2>
@@ -73,8 +90,8 @@ export default function Airport() {
                 </div>
             </div>
 
-            <div className='flex flex-col items-center w-screen py-12 px-4'>
-                <h1 className="text-3xl md:text-4xl font-bold text-center mb-12">Airport transfers made easy</h1>
+            <div className='flex flex-col items-center w-screen lg:py-12 md:py-6 py-4 px-4'>
+                <h1 className="sm:text-3xl text-xl md:text-4xl font-bold text-center lg:mb-12 md:mb-6 mb-3">Airport transfers made easy</h1>
                 <div className='max-w-6xl w-full flex flex-col md:flex-row justify-evenly items-center gap-8'>
                     <div className='p-4 rounded-lg shadow-md border-t border-gray-100 flex flex-col items-center'>
                         <img src={airsec2} alt="Booking Your Airport Taxi" className='max-w-full h-auto' />
@@ -96,16 +113,17 @@ export default function Airport() {
 
             <PremiumTempoExperience />
 
-            <div className="w-screen flex flex-col items-center bg-gray-200 py-12 px-4">
-                <div className="max-w-6xl w-full flex flex-col md:flex-row gap-8 items-center">
+            <div className="w-screen flex flex-col items-center bg-gray-200 lg:py-12  md:py-6 py-4 px-4">
+                <div className="max-w-6xl w-full flex flex-col md:flex-row md:gap-8  gap-4 items-center">
                     <div className="flex flex-col items-center">
                         <img src={ambulance} alt="Reliable DTS Tempo Travelers" className="w-full max-w-xs md:max-w-md" />
                     </div>
                     <div className="text-center md:text-left">
-                        <h1 className="text-[#303030] text-2xl md:text-4xl font-extrabold">Discover Reliable DTS Tempo Travellers</h1>
-                        <p className="text-[#303030] text-sm md:text-lg my-3 font-medium">Access our tempo any time, day or night</p>
+                        <h1 className="text-[#303030] sm:text-3xl text-xl md:text-4xl font-bold">Discover Reliable DTS Tempo Travellers</h1>
+                        <p className="text-[#303030] text-sm md:text-lg md:my-3 my-1 font-medium">Access our tempo any time, day or night</p>
                         <h6 className="text-[#252525] font-semibold text-lg mb-3">Tempo</h6>
-                        <button className="font-bold text-lg md:text-xl bg-[#FF9307] text-white rounded hover:bg-orange-500 transition duration-300 px-6 py-3" onClick={() => navigate('/ourservices/tempo')}>
+                        <button className="font-bold text-lg md:text-xl bg-[#FF9307] text-white rounded
+                         hover:bg-orange-500 transition duration-300 md:px-6 px-3 md:py-3 py-1" onClick={() => navigate('/ourservices/tempo')}>
                             Know More
                         </button>
                     </div>
