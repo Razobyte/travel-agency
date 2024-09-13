@@ -31,7 +31,7 @@ const CarActionButtons = () => {
 
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="relative bg-white p-6 rounded-lg shadow-xl max-w-3xl">
+        <div className="relative bg-white sm:p-6 p-2 rounded-lg shadow-xl sm:max-w-3xl w-[95%]">
           <button
             onClick={onClose}
             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
@@ -43,20 +43,19 @@ const CarActionButtons = () => {
       </div>
     );
   };
-
   return (
     <div>
       <button
         onClick={openBooking}
-        className="mt-6 px-6 py-2 bg-[#FF9307] text-[#ffff] rounded font-bold rounded hover:bg-orange-500 hover:text-[#252525] transition duration-300 text-2xl"
+        className="mt-6 px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-[#FF9307] text-[#ffff] font-bold rounded hover:bg-orange-500 hover:text-[#252525] transition duration-300 text-sm sm:text-base md:text-lg lg:text-xl"
       >
         Request to Book
       </button>
       <button
         onClick={openCalculator}
-        className="ms-3 mt-6 px-6 py-2 bg-[#FF9307] text-[#ffff] rounded font-bold rounded hover:bg-orange-500 hover:text-[#252525] transition duration-300 text-2xl"
+        className="ms-3 mt-6 px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-[#FF9307] text-[#ffff] font-bold rounded hover:bg-orange-500 hover:text-[#252525] transition duration-300 text-sm sm:text-base md:text-lg lg:text-xl"
       >
-    View Fare
+        View Fare
       </button>
 
       <ModalWrapper isOpen={isCalculatorOpen} onClose={closeCalculator}>
@@ -69,5 +68,4 @@ const CarActionButtons = () => {
     </div>
   );
 };
-
 export default CarActionButtons;

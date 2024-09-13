@@ -25,7 +25,7 @@ const CarActionButtons = ({buttonName}) => {
 
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="relative bg-white p-6 rounded-lg shadow-xl max-w-3xl">
+        <div className="relative bg-white sm:p-6 p-4 rounded-lg shadow-xl sm:max-w-3xl w-10/12">
           <button
             onClick={onClose}
             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
@@ -42,8 +42,8 @@ const CarActionButtons = ({buttonName}) => {
     <div>
       <button
         onClick={openBooking}
-        className="sm:mt-6 sm:px-8  px-3  py-1 sm:py-2 bg-[#FF9307] text-[#ffff] rounded  rounded hover:bg-orange-500
-         hover:text-[#252525] transition duration-300 sm:text-2xl text-[10px] sm:font-bold font-normal"
+        className="sm:mt-6 sm:px-8  px-3  py-1 sm:py-2 bg-[#FF9307] text-[#ffff]   rounded hover:bg-orange-500
+         hover:text-[#252525] transition duration-300 lg:text-2xl sm:text-lg xs:text-sm text-sm sm:font-bold font-medium"
       >
       {buttonName}
       </button>

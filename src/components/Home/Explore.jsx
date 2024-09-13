@@ -7,8 +7,8 @@ import Desserts from '../../../public/Imgae/Deserts.png';
 export default function Explore() {
     return (
         <>
-            <div className="w-screen flex justify-center items-center py-8 flex-col">
-                <h1 className='text-4xl text-[#252525] font-[700] text-center pb-9'>Explore With DTS</h1>
+            <div className="w-screen md:flex hidden justify-center items-center lg:py-8 sm:py-5 py-3 flex-col">
+                <h1 className=' text-2xl sm:text-3xl md:text-4xl text-[#252525] font-[700] text-center lg:pb-9 sm:pb-4 pb-2'>Explore With DTS</h1>
                 <div className='w-max-6xl flex justify-center align-items-center gap-5 '>
                     <div style={{ backgroundImage: `url(${mountains})`, backgroundPosition: "center", backgroundSize: "cover", backgroundRepeat: "no-repeat", width: '350px', maxHeight: "400px", minHeight: "300px" }} className="py-5 flex flex-col justify-center align-items-center  hover:scale-105 transition-transform duration-300" >
                         <div>

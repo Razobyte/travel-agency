@@ -19,7 +19,7 @@ export default function Tab() {
     if (activeTab === 'Rental') {
       return (
         <select
-          className="border border-gray-300 px-4 py-3 w-[35%] focus:outline-none focus:ring-1 focus:ring-yellow-100"
+          className="border border-gray-300 px-2 py-2 w-full sm:h-auto h-8 focus:outline-none focus:ring-1 focus:ring-yellow-100  text-sm sm:text-base lg:text-xl"
           value={packageSelected}
           onChange={(e) => setPackageSelected(e.target.value)}
         >
@@ -37,7 +37,8 @@ export default function Tab() {
         <input
           type="text"
           placeholder="Enter Destination"
-          className="border border-gray-300 px-4 py-3 w-[35%] focus:outline-none focus:ring-1 focus:ring-yellow-100"
+          className="border border-gray-300 px-2 py-2 w-full sm:h-auto h-8 focus:outline-none focus:ring-1 focus:ring-yellow-100 
+           text-sm sm:text-base lg:text-xl"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
         />
@@ -84,15 +85,16 @@ export default function Tab() {
   };
 
   return (
-    <div className="w-screen flex flex-col px-12 mt-[-100px]">
-      <div className="max-w-6xl">
+    <div className="w-full flex flex-col lg:mt-[-100px] sm:mt-[-50px] mt-[-20px]">
+      <div className="max-w-6xl w-full px-2 sm:px-4 lg:px-12">
         <nav>
-          <ul className="flex justify-evenly bg-white shadow w-[40%] py-2 text-[#474747] font-bold text-lg">
+          <ul className="flex justify-between bg-white shadow w-full py-2 text-[#474747] font-bold 
+          text-sm sm:text-base lg:text-xl rounded-t-lg">
             {['Taxi', 'Rental', 'Airport', 'Tempo'].map((tab) => (
-              <li key={tab}>
+              <li key={tab} className="flex-1 text-center">
                 <button
-                  className={`border-b-2 focus:border-b-2 focus:border-blue-500 active:border-b-2 active:border-blue-500 ${
-                    activeTab === tab ? 'border-blue-500' : 'border-transparent'
+                  className={`w-full py-1 sm:py-2 border-b-2 focus:outline-none ${
+                    activeTab === tab ? 'border-[#FF9307]' : 'border-transparent'
                   }`}
                   onClick={() => handleTabClick(tab)}
                 >
@@ -102,28 +104,31 @@ export default function Tab() {
             ))}
           </ul>
         </nav>
-        <form className="flex gap-5 p-4 bg-gray-100">
+        <form className="flex gap-1 sm:gap-2 lg:gap-3 px-2 sm:px-3 lg:px-4 py-2 sm:py-3 lg:py-4 bg-gray-100 rounded-b-lg">
           <input
             type="text"
             placeholder="Current Location"
-            className="border border-gray-300 px-4 py-3 w-[35%] focus:outline-none focus:ring-1 focus:ring-yellow-100"
+            className="border border-gray-300 px-1 sm:px-2 py-1 sm:py-2 w-full sm:h-auto h-8  focus:outline-none focus:ring-1 focus:ring-yellow-100  text-sm sm:text-base lg:text-xl"
             value={currentLocation}
             onChange={(e) => setCurrentLocation(e.target.value)}
           />
-          {renderSecondInput()}
+          <div className="w-full">
+            {renderSecondInput()}
+          </div>
           <Link
             to={isButtonDisabled() ? '#' : getButtonLink()}
-            className="w-[30%]"
+            className="w-full"
             onClick={(e) => isButtonDisabled() && e.preventDefault()}
           >
             <button
-              className={`bg-[#FF9307] px-5 py-3 rounded text-lg font-bold text-[#252525] flex justify-center items-center gap-2 w-full ${
+              className={`bg-[#FF9307] px-1 sm:px-2 py-2 sm:w-full rounded sm:h-auto h-8  text-sm sm:text-base lg:text-xl font-bold
+                 text-[#252525] flex justify-center items-center gap-1 sm:gap-2 ${
                 isButtonDisabled() ? 'opacity-80 cursor-not-allowed' : ''
               }`}
               disabled={isButtonDisabled()}
             >
-              {getButtonText()}
-              <FaArrowAltCircleRight />
+              <span className="truncate">{getButtonText()}</span>
+              <FaArrowAltCircleRight/>
             </button>
           </Link>
         </form>

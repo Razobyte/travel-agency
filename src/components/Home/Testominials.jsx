@@ -9,25 +9,23 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import icon from '../../../public/Imgae/thumb.png'
 
-
 const TestimonialCard = ({ name, image, rating, review }) => (
-
-    <div className="bg-white rounded-2xl p-6 shadow-md h-64">
-        <div className="flex items-center mb-4">
-            <img src={image} alt={name} className="max-w-full rounded-full mr-4" />
+    <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-md h-auto sm:h-64 relative">
+        <div className="flex flex-col sm:flex-row items-center mb-4">
+            <img src={image} alt={name} className="w-16 h-16 rounded-full mr-4 mb-2 sm:mb-0" />
             <div>
-                <h3 className="font-bold text-lg">{name}</h3>
-                <div className="flex text-[#FF9307]">
+                <h3 className="font-bold text-lg text-center sm:text-left">{name}</h3>
+                <div className="flex justify-center sm:justify-start text-[#FF9307]">
                     {[...Array(rating)].map((_, i) => (
                         <FaStar key={i} />
                     ))}
                 </div>
-                <div className='absolute top-10 right-10'>
-                    <img src={icon} alt="thumb" className='max-w-full h-10 ' />
-                </div>
+            </div>
+            <div className='absolute top-2 right-2 sm:top-6 sm:right-6'>
+                <img src={icon} alt="thumb" className='w-8 h-8 sm:w-10 sm:h-10' />
             </div>
         </div>
-        <p className="text-gray-600">{review}</p>
+        <p className="text-gray-600 text-sm sm:text-base">{review}</p>
     </div>
 );
 
@@ -54,16 +52,21 @@ const Testimonials = () => {
     ];
 
     return (
-        <div className="w-screen py-16 bg-cover bg-center bg-no-repeat flex justify-center flex-col items-center"
+        <div className="w-full py-12 sm:py-16 bg-cover bg-center bg-no-repeat flex justify-center flex-col items-center"
             style={{ backgroundImage: `url(${bg})` }}>
-            <div className="max-w-6xl px-4">
-                <h2 className="text-4xl font-bold text-center mb-2 text-white">What People say about us?</h2>
-                <p className="text-center mb-12 text-white" >Discover what our customers think about us</p>
+            <div className="w-full max-w-6xl px-4">
+                <h2 className="text-3xl sm:text-4xl font-bold text-center mb-2 text-white">What People say about us?</h2>
+                <p className="text-center mb-8 sm:mb-12 text-white text-sm sm:text-base">Discover what our customers think about us</p>
                 <Swiper
-                    spaceBetween={10}
-                    slidesPerView={2}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                        },
+                    }}
                     loop={true}
-                    modules={[Autoplay, Pagination,Navigation]}
+                    modules={[Autoplay, Pagination, Navigation]}
                     pagination={{ clickable: true }}
                     autoplay={{
                         delay: 3000,

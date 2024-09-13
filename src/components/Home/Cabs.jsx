@@ -1,15 +1,15 @@
-
 import { useNavigate } from 'react-router-dom';
 import image from '../../../public/Imgae/arrow.png';
-import bg from '../../../public/Imgae/cabs-bg.png'
+import bg from '../../../public/Imgae/cabs-bg.png';
+import CarActionButtons from '../Navbar/NavbarButton';
 
-const CabServiceSection = ({ title, routes}) => (
-  <div className="flex flex-col">
-    <h2 className="text-4xl font-[700] mb-5 text-white">{title}</h2>
-    <ul>
+const CabServiceSection = ({ title, routes }) => (
+  <div className="flex flex-col items-center p-3 justify-center bg-black bg-opacity-60 rounded-lg shadow-md flex-shrink-0 w-full sm:w-80 md:w-96 lg:w-1/4">
+    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">{title}</h2>
+    <ul className="space-y-2">
       {routes.map((route, index) => (
-        <li key={index} className="flex items-center mb-3 text-white gap-3 text-md font-medium cursor-pointer">
-        <img src={image} alt="arrow" className='max-w-full h-5' />
+        <li key={index} className="flex items-center gap-2 text-white text-sm md:text-base cursor-pointer">
+          <img src={image} alt="arrow" className='h-4 w-4 md:h-5 md:w-5 object-contain' />
           {route}
         </li>
       ))}
@@ -18,7 +18,8 @@ const CabServiceSection = ({ title, routes}) => (
 );
 
 const CabServices = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
+
   const services = [
     {
       title: "Delhi Cabs",
@@ -59,20 +60,20 @@ const CabServices = () => {
   ];
 
   return (
-    <div className="w-screen flex flex-col justify-center items-center py-8 bg-gradient-to-r from-black z-50 transparent mt-8"
-    style={{backgroundImage:`url(${bg})` ,backgroundPosition:"center",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
-      <div className="max-w-7xl ">
-        <div className="flex flex-col md:flex-row gap-40">
+    <div className="w-screen flex flex-col justify-center items-center py-8 bg-gradient-to-r from-black to-gray-800 bg-cover
+     bg-center mt-8"
+         style={{ backgroundImage: `url(${bg})` }}>
+      <div className="max-w-7xl w-full px-4">
+        <div className="flex justify-center items-center overflow-x-auto gap-4 no-scrollbar">
           {services.map((service, index) => (
             <CabServiceSection key={index} title={service.title} routes={service.routes} />
           ))}
         </div>
-        <div className='flex justify-center items-center mt-8'>
-      <button className="font-bold text-xl bg-[#FF9307] text-[#ffff] rounded font-bold rounded hover:bg-orange-500 hover:text-[#252525] transition duration-300 text-2xl px-12 py-2 mb-12 "
-                     onClick={()=>navigate('/ourservices/tempo')}>
-          Enquiry Now
-        </button>
-        </div>
+        {/* 
+         */}
+       <div className='justify-center items-center flex'>
+       <CarActionButtons buttonName="Enquiry Now"/>
+       </div>
       </div>
     </div>
   );

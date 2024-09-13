@@ -10,7 +10,7 @@ import iso from '../../../public/Imgae/iso-symbol.png'
 export default function Delivers(){
     return(
         <>
-        <div className="w-screen bg-gray-200 flex justify-center items-center py-12 flex-col">
+        <div className="w-screen bg-gray-200 md:flex hidden justify-center items-center py-12 flex-col">
         <h1 className="text-4xl text-[#252525] font-[700] text-center pb-8">What We Delivers</h1>
             <div className="max-w-6xl flex justify-center items-center gap-8">
             <div className='bg-white py-6 px-16 w-full flex justify-center items-center flex-col rounded-lg shadow transition-transform duration-300 hover:rotate-6 cursor-pointer'>
