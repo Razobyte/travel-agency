@@ -9,7 +9,7 @@ import axios from 'axios';
 export default function ContactForm() {
   const [formValues, setFormValues] = useState({
     fullName: '',
-    phoneNumber: '',
+    phone: '',
     email: '',
     message: ''
   });
@@ -39,9 +39,9 @@ export default function ContactForm() {
   };
 
   const validate = () => {
-    let tempErrors = {};
+    let tempErors = {};
     tempErrors.fullName = formValues.fullName ? '' : 'This field is required.';
-    tempErrors.phoneNumber = formValues.phoneNumber ? '' : 'This field is required.';
+    tempErrors.phone = formValues.phone ? '' : 'This field is required.';
     tempErrors.email = formValues.email ? '' : 'This field is required.';
     tempErrors.message = formValues.message ? '' : 'This field is required.';
 
@@ -55,11 +55,11 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      setLoading(true); // Set loading state while submitting
+      setLoading(true);
       try {
         const formData = new FormData();
         formData.append('fullName', formValues.fullName);
-        formData.append('phoneNumber', formValues.phoneNumber);
+        formData.append('phone', formValues.phone);
         formData.append('email', formValues.email);
         formData.append('message', formValues.message);
 
@@ -74,7 +74,7 @@ export default function ContactForm() {
           setMsg(res.data.message);
           setFormValues({
             fullName: '',
-            phoneNumber: '',
+            phone: '',
             email: '',
             message: ''
           });
@@ -84,7 +84,7 @@ export default function ContactForm() {
       } catch (error) {
         console.error('Error submitting form:', error);
       } finally {
-        setLoading(false); // Reset loading state
+        setLoading(false);
       }
 
       setErrors({});
@@ -123,15 +123,15 @@ export default function ContactForm() {
               sx={{ mb: 2, width: '100%' }}
             />
             <TextField
-              id="phoneNumber"
+              id="phone"
               label="Phone Number *"
               variant="outlined"
-              name="phoneNumber"
+              name="phone"
               type='number'
-              value={formValues.phoneNumber}
+              value={formValues.phone}
               onChange={handleChange}
-              error={!!errors.phoneNumber}
-              helperText={errors.phoneNumber}
+              error={!!errors.phone}
+              helperText={errors.phone}
               InputProps={{ style: { backgroundColor: '#ffffff' } }}
               sx={{ mb: 2, width: '100%' }}
             />
