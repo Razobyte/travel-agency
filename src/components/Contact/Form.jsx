@@ -40,16 +40,16 @@ export default function ContactForm() {
 
   const validate = () => {
     let tempErors = {};
-    tempErrors.fullName = formValues.fullName ? '' : 'This field is required.';
-    tempErrors.phone = formValues.phone ? '' : 'This field is required.';
-    tempErrors.email = formValues.email ? '' : 'This field is required.';
-    tempErrors.message = formValues.message ? '' : 'This field is required.';
+    tempErors.fullName = formValues.fullName ? '' : 'This field is required.';
+    tempErors.phone = formValues.phone ? '' : 'This field is required.';
+    tempErors.email = formValues.email ? '' : 'This field is required.';
+    tempErors.message = formValues.message ? '' : 'This field is required.';
 
     setErrors({
-      ...tempErrors
+      ...tempErors
     });
 
-    return Object.values(tempErrors).every(x => x === '');
+    return Object.values(tempErors).every(x => x === '');
   };
 
   const handleSubmit = async (e) => {
